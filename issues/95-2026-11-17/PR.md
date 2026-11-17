@@ -26,3 +26,7 @@ Two controlled A→B / B→A rounds compared the author's `main` shader against 
 | 0.5, 1920×1080 complex parts | 0.2720 ms | 0.2413 ms | −11.3% |
 
 Both individual rounds improved in these cases. This measures the two changes together at the GPU draw stage. It does not establish a full application frame-rate gain. Live capture/composition and other GPUs were not measured. Live desktop inspection was skipped because another Atrium installation was running and a development instance could take over the user's desktop.
+
+## Integration
+
+This PR and #97 each start from the author's `main` so their review diffs stay independent. They edit overlapping shader lines; if #97 merges first, I will rebase this branch and resolve the shader conflict before #98 is merged.
