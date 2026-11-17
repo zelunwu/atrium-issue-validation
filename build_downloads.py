@@ -27,12 +27,15 @@ def package_92() -> Path:
     issue = ROOT / "issues/92-2026-11-17"
     target = OUT / "atrium-issue-92-2026-11-17-visual.zip"
     with ZipFile(target, "w", ZIP_DEFLATED, compresslevel=6) as archive:
-        for name in ("README.md", "VALIDATION.md", "Run-PixelComparison.ps1",
+        for name in ("README.md", "VALIDATION.md", "PERFORMANCE-AB.md", "PR.md", "Run-PixelComparison.ps1",
                      "pixel-compare/check_pixel_parity.py",
                      "pixel-compare/visual-report.html", "pixel-compare/visual-report.json"):
             add_file(archive, issue, name)
         add_images(archive, issue, "pixel-compare/before", 147)
         add_images(archive, issue, "pixel-compare/after", 147)
+        for variant in ("A", "B"):
+            for round_number in (1, 2):
+                add_file(archive, issue, f"performance/ab-glass-{variant}-round{round_number}.csv")
     return target
 
 
@@ -40,13 +43,18 @@ def package_95() -> Path:
     issue = ROOT / "issues/95-2026-11-17"
     target = OUT / "atrium-issue-95-2026-11-17-visual.zip"
     with ZipFile(target, "w", ZIP_DEFLATED, compresslevel=6) as archive:
-        for name in ("README.md", "VALIDATION.md", "check_pixel_parity.py",
+        for name in ("README.md", "VALIDATION.md", "PR-ISOLATED-AB.md", "PR.md", "check_pixel_parity.py",
                      "visual-report.html", "visual-report.json",
                      "cpu-visual-report.html", "cpu-visual-report.json"):
             add_file(archive, issue, name)
         for directory, count in (("gpu-expected", 147), ("visual-actual", 147),
                                  ("expected", 3), ("visual-cpu-actual", 3)):
             add_images(archive, issue, directory, count)
+        raw_runs = sorted((issue / "evidence/2026-11-17/isolated-pr").glob("*.csv"))
+        if len(raw_runs) != 8:
+            raise RuntimeError(f"Expected 8 isolated #95 A/B runs, found {len(raw_runs)}")
+        for source in raw_runs:
+            archive.write(source, source.relative_to(issue))
     return target
 
 

@@ -1,8 +1,12 @@
-param([switch]$Rebaseline)
+param(
+    [switch]$Rebaseline,
+    [string]$AtriumRoot = '',
+    [string]$BuildName = 'build'
+)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $source = Join-Path $root 'native'
-$build = Join-Path $source 'build'
+$build = Join-Path $source $BuildName
 $exe = Join-Path $build 'Release/atrium_graphics_baseline.exe'
 $comparer = if ($env:ATRIUM_REG_CLI) { $env:ATRIUM_REG_CLI } else { Join-Path (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $root))) 'reg-cli/dist/cli.mjs' }
 function Assert-NumberedInventory($files, $label) {
@@ -18,7 +22,9 @@ function Assert-NumberedInventory($files, $label) {
 Push-Location $root
 try {
     if (!(Test-Path -LiteralPath $comparer)) { throw "Build reg-cli first: $comparer" }
-    cmake -S $source -B $build -A x64
+    $cmakeArgs = @('-S', $source, '-B', $build, '-A', 'x64')
+    if ($AtriumRoot) { $cmakeArgs += "-DATRIUM_ROOT=$AtriumRoot" }
+    cmake @cmakeArgs
     if ($LASTEXITCODE) { throw 'CMake configuration failed' }
     cmake --build $build --config Release --parallel
     if ($LASTEXITCODE) { throw 'Native baseline build failed' }

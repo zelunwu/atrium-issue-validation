@@ -1,5 +1,11 @@
 # Atrium issue #95 visual and performance baseline
 
+## Isolated pull-request result (2026-11-17)
+
+The current #95 PR changes only `glass.hlsl` on top of the author's `main`, without #92's shader specialization. [VALIDATION.md](VALIDATION.md) binds the build and image checks to its exact head; [PR-ISOLATED-AB.md](PR-ISOLATED-AB.md) reports its independent A/B medians and links to all eight raw runs in `evidence/2026-11-17/isolated-pr/`. The older `GLASS-SHADER-AB-2026-11-17.md` records experiments on a combined branch and is historical candidate evidence.
+
+To reproduce the isolated visual check with its own build directory, run `./Run-GpuComparison.ps1 -AtriumRoot <path-to-#95-checkout> -BuildName build-pr95`. The original author shader is archived as `native/glass_issue95_base.hlsl`; CMake's `ATRIUM_GLASS_SHADER_OVERRIDE` selects it for an independent A/B build. The visual report and offline ZIP linked below include the inspected synthetic images.
+
 This is an initial, deterministic visual regression baseline for the **CPU glass preview** in Atrium v2.7.0 (`63ea4ed`). It directly compiles the current `GlassPreview.cs` and `CornerProfile.cs` as linked source files; the synthetic photo and simple settings are local stand-ins. The test does **not** execute `glass.hlsl`, a D3D11 device, desktop capture, DirectComposition, or the application UI. Therefore its timings are CPU preview timings, not GPU frame times or end-to-end product performance.
 
 The `expected/` directory holds the approved PNGs for three 640×320 scenes: liquid, frosted, and pill. The first run was generated on Windows 10.0.26200 with .NET SDK 10.0.302 and reg-cli 0.19.0-rc3 from source commit `6290eb7`. The test background is synthetic; there is no captured personal desktop content. The backgrounds deliberately include sharp vertical and horizontal edges so refraction seams are visible.
