@@ -1,20 +1,20 @@
 # Build output and local captures. Approved synthetic references are tracked.
-/bin/
-/obj/
-/native/build*/
-/actual/
-/diff/
-/gpu-actual/
-/gpu-diff/
-/gpu-a/
-/gpu-b/
-/gpu-ab-diff/
-/gpu-parity/
-/gpu-test/
-/blur-original/
-/blur-kawase/
-/blur-kawase-repeat/
-/__pycache__/
+**/bin/
+**/obj/
+**/native/build*/
+**/actual/
+**/diff/
+**/gpu-actual/
+**/gpu-diff/
+**/gpu-a/
+**/gpu-b/
+**/gpu-ab-diff/
+**/gpu-parity/
+**/gpu-test/
+**/blur-original/
+**/blur-kawase/
+**/blur-kawase-repeat/
+**/__pycache__/
 
 # Raw runs are copied to evidence/ only after review.
 /*.csv
@@ -22,3 +22,8 @@
 /*.json
 /*.xml
 /*.asm
+issues/*/*.csv
+issues/*/*.html
+issues/*/*.json
+issues/*/*.xml
+issues/*/*.asm
