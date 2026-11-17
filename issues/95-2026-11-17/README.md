@@ -53,3 +53,6 @@ python .\check_pixel_parity.py gpu-expected gpu-actual
 ```
 
 The `native/glass_before_blur_branch.hlsl` and `native/glass_before_shadow.hlsl` snapshots include Atrium code under its MIT license; see `LICENSE-ATRIUM`. This repository stores no personal desktop captures and does not change the Atrium project's CI or test requirements.
+
+[Open the interactive GPU visual report on GitHub Pages](https://zelunwu.github.io/atrium-issue-validation/issues/95-2026-11-17/visual-report.html). The published `visual-actual/` images are synthetic outputs from the validated RTX 5070 run. `Build-VisualReport.ps1 -RefreshImages` regenerates the images and report for a reviewed update.
+[Open the CPU preview report](https://zelunwu.github.io/atrium-issue-validation/issues/95-2026-11-17/cpu-visual-report.html), or [download both reports for offline viewing](https://github.com/zelunwu/atrium-issue-validation/releases/download/reports-2026-11-17/atrium-issue-95-2026-11-17-visual.zip).

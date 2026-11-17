@@ -1,0 +1,24 @@
+{
+  "failedItems": [],
+  "newItems": [],
+  "deletedItems": [],
+  "passedItems": [
+    "frosted.png",
+    "liquid.png",
+    "pill.png"
+  ],
+  "expectedItems": [
+    "frosted.png",
+    "liquid.png",
+    "pill.png"
+  ],
+  "actualItems": [
+    "frosted.png",
+    "liquid.png",
+    "pill.png"
+  ],
+  "diffItems": [],
+  "actualDir": "visual-cpu-actual",
+  "expectedDir": "expected",
+  "diffDir": "visual-cpu-diff"
+}

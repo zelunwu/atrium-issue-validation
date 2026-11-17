@@ -6,6 +6,8 @@
 **/diff/
 **/gpu-actual/
 **/gpu-diff/
+**/visual-diff/
+**/visual-cpu-diff/
 **/gpu-a/
 **/gpu-b/
 **/gpu-ab-diff/
@@ -22,8 +24,14 @@
 /*.json
 /*.xml
 /*.asm
+/downloads/
 issues/*/*.csv
 issues/*/*.html
 issues/*/*.json
 issues/*/*.xml
 issues/*/*.asm
+!/index.html
+!issues/*/visual-report.html
+!issues/*/visual-report.json
+!issues/*/cpu-visual-report.html
+!issues/*/cpu-visual-report.json
