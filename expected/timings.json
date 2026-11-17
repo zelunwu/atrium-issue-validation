@@ -1,0 +1,11 @@
+{
+  "renderer": "Atrium.Settings.GlassPreview CPU port",
+  "size": "640x320",
+  "unit": "milliseconds",
+  "statistic": "median of 5 runs after 1 warmup; includes buffer clone",
+  "measurements": {
+    "liquid": 2.9872,
+    "frosted": 2.4081,
+    "pill": 2.8872
+  }
+}
